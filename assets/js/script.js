@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Crea Tareas Prueba
     adminTareas.agregarTarea("Ir al supermercado","Pan\nQueso\nJamón\nAzucar","pendiente");
     adminTareas.agregarTarea("Estudiar para prueba de JavaScript","Variables:\n- Primitivas\n- Arreglos\n- Objetos\nFunciones:\n- Clásicas\n- Anónimas\n- Flecha","pendiente");
-    adminTareas.agregarTarea("Dar médicamentos a la gata","Amoxilina 20ml 2 veces al día cada 18 horas\nInvernit media pastilla una vez al día","lista");
+    adminTareas.agregarTarea("Dar médicamentos a la gata","Amoxilina 20ml cada 8 horas\nInvernit media pastilla una vez al día","lista");
     adminTareas.agregarTarea("Enviar correo a John Doe","Adjuntar Curriculum Vitae","lista");
 
     // Actualizar las listas HTML.
