@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-List</title>
+    <link rel="shortcut icon" href="assets/images/check.svg" type="image/x-icon">
+
+    <!-- CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW:wght@100..400&display=swap" rel="stylesheet">
+    <!-- CSS Propio-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Js Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Js Propio-->
+    <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+    <!-- Navbar  -->
+    <nav class="navbar container-fluid bg-dark text-light py-4">
+        <div class="container-lg fs-3">
+            <p class="my-0"><i class="bi bi-check2-square"></i><span class="fw-bold"> Check-List</span></p>
+        </div>
+    </nav>
+
+    <main class="container-lg bg-light py-5">
+        <!-- Ingreso nueva tarea  -->
+        <section class="col-lg-9 bg-secondary-subtle mx-auto rounded-4">
+            <form id="formTarea" class="needs-validation p-4 text-center" novalidate>            
+                <h5>Ingreso Nuevas Tareas</h5>
+                <div class="form-floating">
+                    <input type="text" class="form-control my-4" id="tareaInput" placeholder="Nombre Tarea" required>
+                    <label for="tareaInput">Nueva Tarea :</label>
+                    
+                    <!-- Mensaje advertencia input nombre tarea -->
+                    <div class="invalid-feedback">
+                        <p>* Campo Requerido</p>
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control my-4" placeholder="Descripcion" id="descripcionArea" style="height: 100px" required></textarea>
+                    <label for="descripcionArea">Descripción Tarea :</label>
+                    
+                    <!-- Mensaje advertencia text area tarea -->
+                    <div class="invalid-feedback">
+                        <p>* Campo Requerido</p>
+                    </div>
+                </div>                   
+                <button type="submit" class="btn btn-outline-secondary" aria-label="Agregar Tarea"><i class="bi bi-plus-lg" aria-hidden="true"></i> Agregar Tarea</button>
+                
+                <!-- Mensaje éxito agregar tarea -->
+                <div class="alert alert-success d-none my-4">
+                    <p>Tarea agregada exitosamente</p>
+                    <button class="btn bg-success fw-medium my-2 text-light col-4 mx-auto d-block" type="button">OK</button>
+                </div>   
+            </form>    
+        </section>
+        <!-- Fin Ingreso nueva tarea  -->
+
+        <!-- Tareas Pendientes -->
+        <section class="col-lg-11 mx-auto text-center py-4">
+            <hr>
+            <h5 class="my-4">Tareas Pendientes</h5>
+            <hr>
+            <ul id="pendientes" class="list-group">
+                <!-- Ingresar Tareas Pendientes Aquí -->
+            </ul>
+
+            <!-- Eliminar Tareas Pendientes  -->
+            <div class="my-4">
+                <button id="eliminarPendientes" class="btn btn-outline-secondary col-12 col-lg-6" aria-label="Eliminar Tareas Pendiente" type="button"><i class="bi bi-trash3-fill" aria-hidden="true"></i> Eliminar Tareas Pendientes</button>
+            </div>
+            <hr>          
+        </section>
+        <!-- Fin Tareas Pendientes  -->
+
+        <!-- Botones cambio entre listas -->
+        <div class="col-6 d-flex justify-content-between mx-auto">
+            <button id="moverPendientes" type="button" class="btn btn-outline-secondary" aria-label="Mover a Tareas Listas"><i class="bi bi-caret-down-fill"></i></button>
+            <button id="moverListas" type="button" class="btn btn-outline-secondary" aria-label="Mover a Tareas Pendientes"><i class="bi bi-caret-up-fill"></i></button>
+        </div>
+
+        <!-- Tareas Listas -->
+        <section class="col-lg-11 mx-auto text-center py-4">
+            <hr>
+            <h5 class="my-4">Tareas Listas</h5>
+            <hr>
+            <ul id="listas" class="list-group">
+                <!-- Ingreasar Tareas Listas Aquí-->
+            </ul>
+
+            <!-- Eliminar Tareas Pendientes  -->
+            <div class="my-4">
+                <button id="eliminarListas" class="btn btn-outline-secondary col-12 col-lg-6" type="button" aria-label="Eliminar Tareas Lista"><i class="bi bi-trash3-fill" aria-hidden="true"></i> Eliminar Tareas Listas</button>
+            </div>
+            <hr>           
+        </section>
+        <!-- Fin Tareas Listas  -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="container-fluid bg-dark text-light text-center py-4">
+        <div class="container-lg fs-2">
+            <span></span><i class="bi bi-check2-square"></i></span>
+        </div>
+    </footer>
+
+    <!-- Modal Detalle Tarea -->
+    <div class="modal fade" id="detalleTareaModal" tabindex="-1" aria-labelledby="detalleTareaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detallaTareaLabel">Detalles de la Tarea</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nombre:</strong> <span id="modalTareaNombre"></span></p>
+                    <p><strong>ID:</strong> <span id="modalTareaId"></span></p>
+                    <p><strong>FECHA INGRESO:</strong> <span id="modalTareaFecha"></span></p>
+                    <p><strong>Descripción:</strong><br><span id="modalTareaDescripcion"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
