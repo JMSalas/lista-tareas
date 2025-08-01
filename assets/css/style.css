@@ -1,0 +1,7 @@
+body {
+    background-image: url(../images/noise.png);
+}
+
+.form-check-label, .form-control  {
+    font-family: "Playwrite AU NSW", cursive;
+}
